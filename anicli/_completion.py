@@ -3,12 +3,12 @@ from typing import Any, Dict, List, Sequence, Tuple
 from prompt_toolkit.completion import WordCompleter
 
 _ASSIGNED_COMMANDS = ("..", "~")
-_ASSIGNED_COMMANDS_META = {"..": "back to prev step", "~": "back to main menu"}
+_ASSIGNED_COMMANDS_META = {"..": "вернутся на предыдущую страницу", "~": "вернутся в главное меню"}
 _ASSIGNED_COMMANDS_EPISODES = ("..", "~", "info")
 _ASSIGNED_COMMANDS_EPISODES_META = {
-    "..": "back to prev step",
-    "~": "back to main menu",
-    "info": "show full description",
+    "..": "вернутся на предыдущую страницу",
+    "~": "вернутся в главное меню",
+    "info": "показать полное описание",
 }
 
 _WORDS_T = List[str]

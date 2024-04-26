@@ -25,11 +25,11 @@ class Message:
 
     @staticmethod
     def video_not_found():
-        print_formatted_text(HTML("<ascired>Video whis quality not founded, decrease</ascired>"))
+        print_formatted_text(HTML("<ascired>Видео с данным качеством не найдено, уменьшаем качество</ascired>"))
 
     @staticmethod
     def not_found():
-        print_formatted_text(HTML("<ascired>not found :(</ascired>"))
+        print_formatted_text(HTML("<ascired>Не найдено :(</ascired>"))
 
     @staticmethod
     def show_results(items_list: List[Any]):
@@ -48,7 +48,7 @@ class Message:
 
     @staticmethod
     def not_found_episodes():
-        print_formatted_text(HTML("<ascired>episodes not available</ascired>"))
+        print_formatted_text(HTML("<ascired>Эпизоды не найдены</ascired>"))
 
     @staticmethod
     def show_anime_full_description(anime: "BaseAnime"):
@@ -68,7 +68,7 @@ Meta information:
 {"".join(meta_info_str)}
 """
 
-        search_field = SearchToolbar(text_if_not_searching=[("class:not-searching", "Press '/' to start searching.")])
+        search_field = SearchToolbar(text_if_not_searching=[("class:not-searching", "Нажмите '/', чтобы начать поиск.")])
 
         text_area = TextArea(
             text=text,
@@ -78,11 +78,11 @@ Meta information:
         )
         status_bar_text = [
             ("class:status", anime.title),
-            ("class:status", " - Press "),
-            ("class:status.key", "Ctrl-C or Q"),
-            ("class:status", " to exit, "),
+            ("class:status", " - Нажмите "),
+            ("class:status.key", "Ctrl-C или Q"),
+            ("class:status", " чтобы выйти, "),
             ("class:status.key", "/"),
-            ("class:status", " for searching."),
+            ("class:status", " для поиска."),
         ]
         root_container = HSplit(
             [

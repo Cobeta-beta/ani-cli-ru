@@ -110,7 +110,7 @@ class VLCPlayer(BasePlayer):
         with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.m3u') as temp_file:
             if videos[0].headers:
                 warnings.warn(
-                    "vlc player is not support set http headers", category=UserWarning
+                    "Vlc не имеет поддержки для HTTP заголовков", category=UserWarning
                 )
                 return
             playlist = generate_playlist(videos, names, quality=quality)
@@ -127,7 +127,7 @@ class VLCPlayer(BasePlayer):
              stdin: Optional[str] = None, **kwargs):
         if video.headers:
             warnings.warn(
-                "vlc player is not support set http headers, usage --ffmpeg proxy instead", category=UserWarning
+                "VLC не поддерживает http заголовки, используйте вместо этого --ffmpeg proxy", category=UserWarning
             )
             return
         title_arg = f'{cls.TITLE_ARG} {cls.quote(title)}' if title else ""
@@ -158,7 +158,7 @@ class FFMPEGRouter(BasePlayer):
     @classmethod
     def play_from_playlist(cls, videos: List["Video"], names: List[str], headers: Optional[Dict] = None,
                            quality: int = 1080):
-        raise NotImplementedError("Not supported m3u playlist")
+        raise NotImplementedError("Не поддерживается m3u плейлист")
 
     @classmethod
     def _headers(cls, headers: dict):

@@ -49,7 +49,7 @@ def start_search():
     if not results:
         views.Message.not_found()
         return app.fsm.finish()
-    views.Message.print_bold("[*] Search:")
+    views.Message.print_bold("[*] Поиск:")
     views.Message.show_results(results)
     choose = app.cmd.prompt(
         "~/search ", completer=word_choice_completer(results), validator=NumPromptValidator(results)
@@ -73,7 +73,7 @@ def choose_episode():
     if not episodes:
         views.Message.not_found_episodes()
         return app.fsm.finish()
-    views.Message.print_bold("[*] Episodes:")
+    views.Message.print_bold("[*] Серии:")
     views.Message.show_results(episodes)
     choose = app.cmd.prompt(
         "~/search/episode ", completer=anime_word_choice_completer(episodes), validator=AnimePromptValidator(episodes)
@@ -103,7 +103,7 @@ def choose_source():
         views.Message.not_found()
         return app.fsm.prev()
 
-    views.Message.print_bold("[*] Sources:")
+    views.Message.print_bold("[*] Источники:")
     views.Message.show_results(sources)
     choose = app.cmd.prompt(
         "~/search/episode/video ", completer=word_choice_completer(sources), validator=NumPromptValidator(sources)
@@ -126,7 +126,7 @@ def choose_quality():
         views.Message.not_found()
         return app.fsm.prev()
 
-    views.Message.print_bold("[*] Videos:")
+    views.Message.print_bold("[*] Видео:")
     views.Message.show_results(videos)
     choose = app.cmd.prompt(
         "~/search/episode/video/quality ",
@@ -163,7 +163,7 @@ def play_slice():
     episodes: List["BaseEpisode"] = app.fsm["search"]["episode_slice"]
     episode = episodes[0]
     sources: List["BaseSource"] = episode.get_sources()
-    views.Message.print_bold("[*] Sources <u>slice mode</u>:")
+    views.Message.print_bold("[*] Источники <u>режима фрагментов</u>:")
     views.Message.show_results(sources)
     choose = app.cmd.prompt(
         "~/search/episode/videoS ", completer=word_choice_completer(sources), validator=NumPromptValidator(sources)
@@ -184,7 +184,7 @@ def choose_quality_slice():
     videos: List["Video"] = first_source.get_videos(**app.CFG.httpx_kwargs())
     preferred_quality = get_preferred_human_quality_index(videos, app.CFG.MIN_QUALITY)
 
-    views.Message.print_bold("[*] Video <u>slice mode</u>:")
+    views.Message.print_bold("[*] Видео <u>режима фрагментов</u>:")
     views.Message.show_results(videos)
     choose = app.cmd.prompt(
         "~/search/episode/videoS/quality ",
@@ -212,7 +212,7 @@ def choose_quality_slice():
     anime: "BaseAnime" = app.fsm["anime"]
 
     with suppress(KeyboardInterrupt):
-        app.cmd.print_ft("SLICE MODE: Press q + CTRL+C for exit")
+        app.cmd.print_ft("РЕЖИМ ФРАГМЕНТОВ: Нажмите q или CTRL+C чтобы выйти")
         if app.CFG.M3U_MAKE:
             play_slice_playlist(anime=anime, episodes=episodes, cmp_key_hash=cmp_key_hash, app=app)
         else:

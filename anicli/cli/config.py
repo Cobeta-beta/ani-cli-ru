@@ -56,5 +56,5 @@ app.session = PromptSession(
 
 app.documentation = """Anicli
 
-This is a simple a TUI client for watching anime.
+Простой TUI клиент для просмотра Аниме.
 """

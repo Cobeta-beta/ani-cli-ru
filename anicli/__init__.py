@@ -23,13 +23,13 @@ def get_modules(package_name='anicli_api.source'):
 def run_cli():
     import argparse
 
-    parser = argparse.ArgumentParser(description=_get_version(), usage="anicli-ru [OPTIONS]")
+    parser = argparse.ArgumentParser(description=_get_version(), usage="anicli-ru [ФЛАГИ]")
     parser.add_argument(
         "-s",
         "--source",
         default="animego",
         choices=get_modules(),
-        help="Anime source provider (Default `animego`)",
+        help="Источника аниме (По умолчанию `animego`)",
     )
     parser.add_argument(
         "-q",
@@ -37,10 +37,10 @@ def run_cli():
         type=int,
         default=1080,
         choices=[0, 144, 240, 360, 480, 720, 1080],
-        help="Set minimal video quality output in /video menu. "
-        "If there is no maximum, it will display the closest value. "
-        "Eg: if -q 1080 and video not contains 1080 - set 720, 480...0 "
-        "(default 1080)",
+        help="Выбор минимального качества выводимого видео в /video. "
+        "Если нету такого разрешения, будет выбранно ближайшее к нему"
+        "Например: если -q 1080 но нету 1080 - будет выбрано 720, 480...0 "
+        "(По умолчанию 1080)",
     )
     parser.add_argument(
         "-p",
@@ -48,37 +48,37 @@ def run_cli():
         type=str,
         default="mpv",
         choices=["mpv", "vlc", "cvlc"],
-        help="Set videoplayer target. (default 'mpv')",
+        help="Выбор видеоплеера. (По умолчанию 'mpv')",
     )
     parser.add_argument(
         "--ffmpeg",
         action="store_true",
         default=False,
-        help="Usage ffmpeg backend for redirect video buffer to player. "
-        "Enable, if your player cannot accept headers params (vlc, for example)",
+        help="Использует бэкэнд ffmpeg для перенаправления буфера видео в плеер. "
+        "Включите, если ваш плеер не принимает params headers (например, vlc).",
     )
     parser.add_argument(
         "--m3u",
         action="store_true",
         default=False,
-        help="Generate m3u playlist for slice play mode. "
-             "(default False)",
+        help="Создание m3u плейлиста для режима воспроизведения фрагментов. "
+             "(По умолчанию выключенно)",
     )
     parser.add_argument(
         "--m3u-size",
         type=int,
         default=12,
-        help="Generate m3u playlist for slice play mode. "
-             "(default 12)",
+        help="Создание m3u плейлиста для режима воспроизведения фрагментов. "
+             "(По умолчанию 12)",
     )
     parser.add_argument(
         "--proxy",
         type=str,
         default=None,
-        help="Make Extractor request via proxy e.g. socks5://127.0.0.1:1080, http://user:passwd@127.0.0.1:443",
+        help="Выполните запрос к экстрактору через прокси, например socks5://127.0.0.1:1080, http://user:passwd@127.0.0.1:443",
     )
-    parser.add_argument("--timeout", type=float, default=None, help="Setup request timeout")
-    parser.add_argument("-v", "--version", action="store_true", default=False, help="Print version and exit")
+    parser.add_argument("--timeout", type=float, default=None, help="Таймаут запроса на установку")
+    parser.add_argument("-v", "--version", action="store_true", default=False, help="Вывод версии, и выход")
 
     namespaces = parser.parse_args()
     if namespaces.version:

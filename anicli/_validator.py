@@ -25,7 +25,7 @@ class NumPromptValidator(Validator):
             return
         elif self._in_assigned_commands(text):
             return
-        raise ValidationError(message="Should be digit, or (`..`, `~`)")
+        raise ValidationError(message="Введите номер, или (`..`, `~`)")
 
 
 class AnimePromptValidator(NumPromptValidator):
@@ -45,7 +45,7 @@ class AnimePromptValidator(NumPromptValidator):
             if is_digits(start, end) and is_not_out_of_range(start, end):
                 return True
             else:
-                raise ValidationError(message="Wrong slice range")
+                raise ValidationError(message="Неправильный диапазон фрагментов")
         return False
 
     def validate(self, document: Document) -> None:
@@ -57,4 +57,4 @@ class AnimePromptValidator(NumPromptValidator):
         elif self._is_valid_slice(text):
             return
 
-        raise ValidationError(message=f"Should be digit, slice (1-{self.items_len}) or (`..`, `~`, `info`)")
+        raise ValidationError(message=f"Введите номер серии, (1-{self.items_len}) или (`..`, `~`, `info`)")
